@@ -19,17 +19,32 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['_method']))
 		#initialize the twitter object
 		$twit = new Twittonio($username, $password);
 		
-		# get the list of the followers' screen names
-		$followers = $twit->getFollowersScreenNames();
+		# try to login
+		if( $twit->verifyCredentials() )
+		{		
+			# get the list of the followers' screen names
+			$followers = $twit->getFollowersScreenNames();
 
-		# get the list of the friends' screen names
-		$friends = $twit->getFriendsScreenNames();
-		
-		include "template/list.html.php";
+			# get the list of the friends' screen names
+			$friends = $twit->getFriendsScreenNames();
+		}
+		else
+		{
+			$flash_message = "Wrong credentials!";
+		}
 	}
 	else
 	{
-		include "template/index.html.php";
+		$flash_message = "Please enter a username and password!";
+	}
+	
+	if(isset($followers) && isset($friends))
+	{
+		include "templates/list.html.php";
+	}
+	else
+	{
+		include "templates/index.html.php";
 	}
 }
 

@@ -89,14 +89,14 @@ class Twittonio
 	/**
 	 * this method execute the login to twitter using the basic authentication
 	 *
-	 * @return string
+	 * @return bool
 	 **/
 	public function verifyCredentials()
 	{
 		$result = $this->connect( "http://twitter.com/account/verify_credentials.json" );
 		
 		/* 200 correspond to OK in the HTTP Status codes */
-		return ( ($result["code"] !== 200) ? 'Authentication Failed' : 'Success!' );
+		return ($result["code"] == 200) ? true : false;
 	}
 	
 	/**
@@ -127,7 +127,7 @@ class Twittonio
 	}
 
 	/**
-	 *  this method return the full list of followers
+	 *  this method return the full list of friends
 	 *
 	 * @return object
 	 **/
@@ -143,7 +143,7 @@ class Twittonio
 	}
 
 	/**
-	 *  this method return an array of screen names of followers
+	 *  this method return an array of screen names of friends
 	 *
 	 * @return array
 	 **/

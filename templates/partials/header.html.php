@@ -10,20 +10,9 @@
 </head>
 
 <body>
-<?php include "partials/header.html.php"; ?>
+	<h1>Twittonio</h1>
+	<h3>A Simple Useless Twitter Client</h3>
 
-<h3>Followers list</h3>
-<ul>
-	<?php foreach( $followers as $follower) : ?>
-	<li><?= $follower ?></li>
-	<?php endforeach ?>
-</ul>
-
-<h3>Friends List</h3>
-<ul>
-	<?php foreach( $friends as $friend) : ?>
-	<li><?= $friend ?></li>
-	<?php endforeach ?>
-</ul>
-</body>
-</html>
+	<?php if(isset($flash_message)): ?>
+		<div class="message"><?= $flash_message ?></div>
+	<?php endif ?>
