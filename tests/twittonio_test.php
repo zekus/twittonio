@@ -7,20 +7,26 @@
 	
 	class TestOfTwittonio extends UnitTestCase 
 	{
-		function __contruct()
+		function __construct()
 		{
 			$this->UnitTestCase('Twittonio class test');
-			$this->twittonio = new Twittonio('', '');		
+			$this->twittonio = new Twittonio('twittoniotest', '123twittonio');		
 		}
 		
-		function testVerifyAuthentication()
+		function testVerifyCredentialsTrue()
 		{
-			$this->assertTrue($this->twittonio);
+			$this->assertTrue($this->twittonio->verifyCredentials(), "using correct credentials");
 		}
-		
+
+		function testVerifyCredentialsFalse()
+		{
+			$this->twittonio_false = new Twittonio('twittoniotest', '321');		
+			$this->assertFalse($this->twittonio_false->verifyCredentials(), "using wrong credentials");
+		}
+				
 		function testGetFollowers()
 		{
-			$this->assertTrue($this->twittonio);
+			$this->assertIsA($this->twittonio->getFollowers(), "array", "testing that the result is an array");
 		}
 	}
 ?>

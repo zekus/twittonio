@@ -4,7 +4,7 @@
 
 if($_SERVER["REQUEST_METHOD"] == "GET")
 {
-    include "template/index.html.php";
+    include "templates/index.html.php";
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['_method']))
 {	
